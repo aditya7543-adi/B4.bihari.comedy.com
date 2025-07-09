@@ -1,0 +1,707 @@
+<html lang="en" data-bs-theme="light"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B4 Bihar Comedy | Premium Bihari Humor</title>
+    <meta name="description" content="Laugh with Bihar's finest comedy creators">
+    
+    <!-- Preload Assets -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" as="style">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        :root {
+            --primary: #FF6B00;
+            --primary-dark: #E05D00;
+            --secondary: #6C757D;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --bg-gradient: linear-gradient(135deg, #FF9500 0%, #FF6B00 100%);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--light);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        /* Theme Switch */
+        [data-bs-theme="dark"] {
+            --light: #121212;
+            --dark: #F8F9FA;
+            --secondary: #ADB5BD;
+            background-color: #121212;
+        }
+        
+        /* Animated Navbar */
+        .navbar {
+            padding: 1rem 2rem;
+            background: var(--bg-gradient);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 2rem;
+            background: rgba(0, 0, 0, 0.9);
+        }
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: linear-gradient(to right, #fff 20%, #FFD700 40%, #FFD700 60%, #fff 80%);
+            background-size: 200% auto;
+            color: #000;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+        
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            background: url('https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Video Cards */
+        .video-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(0);
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .video-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+            z-index: 1;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            background-color: #f8f9fa; /* Fallback color */
+        }
+        
+        .video-card:hover .video-thumbnail {
+            transform: scale(1.05);
+        }
+        
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        
+        .play-icon i {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+        
+        .video-card:hover .play-icon {
+            transform: translate(-50%, -50%) scale(1.1);
+            opacity: 1;
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        .video-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            z-index: 2;
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Glow Effect */
+        .glow {
+            text-shadow: 0 0 10px rgba(255, 107, 0, 0.7);
+        }
+        
+        /* Section Dividers */
+        .wave-divider {
+            position: relative;
+            height: 100px;
+            overflow: hidden;
+        }
+        
+        .wave-divider svg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1A1A1A 0%, #000 100%);
+            color: white;
+            position: relative;
+        }
+        
+        .footer-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Social Icons */
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .about-section .col-lg-6 {
+                margin-bottom: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            
+            .wave-divider {
+                height: 70px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                min-height: 70vh;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .wave-divider {
+                height: 50px;
+            }
+            
+            .btn-lg {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-emoji-laughing me-2"></i>B4 Bihar
+            </a>
+            
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-sm btn-dark rounded-pill px-3" id="themeToggle">
+                    <i class="bi bi-sun-fill"></i>
+                </button>
+                <a href="team.html" class="btn btn-dark btn-custom rounded-pill px-4">
+                    <i class="bi bi-people-fill me-2"></i>Our Team
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Parallax -->
+    <section class="hero d-flex align-items-center">
+        <div class="container hero-content">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center text-white">
+                    <h1 class="hero-title animate__animated animate__fadeInDown">
+                        Laugh Your <span class="text-warning">Bihari</span> Heart Out
+                    </h1>
+                    <p class="lead fs-3 my-4 animate__animated animate__fadeIn animate__delay-1s">
+                        The most authentic Bihari comedy you'll ever watch!
+                    </p>
+                    <div class="d-flex justify-content-center gap-3 animate__animated animate__fadeIn animate__delay-2s">
+                        <a href="http://www.youtube.com/@B4biharicomedy" class="btn btn-warning btn-lg px-4 py-2 rounded-pill">
+                            <i class="bi bi-play-circle me-2"></i>Watch Now
+                        </a>
+                        <a href="https://youtube.com/@B4biharicomedy" target="_blank" class="btn btn-outline-light btn-lg px-4 py-2 rounded-pill">
+                            <i class="bi bi-youtube me-2"></i>Subscribe
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating elements -->
+        <div class="position-absolute top-20 start-10 floating" style="animation-delay: 0.2s;">
+            <i class="bi bi-emoji-laughing-fill text-warning" style="font-size: 3rem; opacity: 0.7;"></i>
+        </div>
+        <div class="position-absolute bottom-20 end-10 floating" style="animation-delay: 0.4s;">
+            <i class="bi bi-emoji-sunglasses-fill text-warning" style="font-size: 3rem; opacity: 0.7;"></i>
+        </div>
+    </section>
+
+    <!-- Wave Divider -->
+    <div class="wave-divider bg-white">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="#FF6B00"></path>
+            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="#FF6B00"></path>
+            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="#FF6B00"></path>
+        </svg>
+    </div>
+
+    <!-- Video Section -->
+    <section id="videos" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold mb-3 animate__animated animate__fadeIn">
+                    Trending <span class="text-warning">Videos</span>
+                </h2>
+                <p class="lead text-muted animate__animated animate__fadeIn animate__delay-1s">
+                    Our most popular laughs this week
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Video 1 -->
+                <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp">
+                    <div class="video-card h-100" onclick="openVideo('UD5cYQGeMDs')">
+                        <img src="https://i.ytimg.com/vi/UD5cYQGeMDs/maxresdefault.jpg" class="video-thumbnail" alt="Bihari Comedy" loading="lazy">
+                        <div class="play-icon">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                        <div class="video-info">
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 2 -->
+                <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="video-card h-100" onclick="openVideo('ZHVTynVaftM')">
+                        <img src="https://i.ytimg.com/vi/ZHVTynVaftM/maxresdefault.jpg" class="video-thumbnail" alt="Bihari Comedy" loading="lazy">
+                        <div class="play-icon">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                        <div class="video-info">
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 3 -->
+                <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="video-card h-100" onclick="openVideo('IHgwc2_qCWE')">
+                        <img src="https://i.ytimg.com/vi/IHgwc2_qCWE/maxresdefault.jpg" class="video-thumbnail" alt="Bihari Comedy" loading="lazy">
+                        <div class="play-icon">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                        <div class="video-info">
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 4 -->
+                <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp">
+                    <div class="video-card h-100" onclick="openVideo('qvVM505lfvA')">
+                        <img src="https://i.ytimg.com/vi/qvVM505lfvA/maxresdefault.jpg" class="video-thumbnail" alt="Bihari Comedy" loading="lazy">
+                        <div class="play-icon">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                        <div class="video-info">
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 5 -->
+                <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="video-card h-100" onclick="openVideo('V4ySkZN1VJU')">
+                        <img src="https://i.ytimg.com/vi/V4ySkZN1VJU/maxresdefault.jpg" class="video-thumbnail" alt="Bihari Comedy" loading="lazy">
+                        <div class="play-icon">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                        <div class="video-info">
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video 6 -->
+                <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                    <div class="video-card h-100" onclick="openVideo('JR3vX4IL0W0')">
+                        <img src="https://i.ytimg.com/vi/JR3vX4IL0W0/maxresdefault.jpg" class="video-thumbnail" alt="Bihari Comedy" loading="lazy">
+                        <div class="play-icon">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                        <div class="video-info">
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5 animate__animated animate__fadeIn animate__delay-1s">
+                <button class="btn btn-outline-primary px-4 py-2 rounded-pill">
+                    <i class="bi bi-arrow-down-circle me-2"></i>Load More Videos
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5 bg-white position-relative">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="p-4 p-lg-5 rounded-4 shadow-lg bg-light">
+                        <h2 class="display-5 fw-bold mb-4 animate__animated animate__fadeIn">
+                            About <span class="text-warning">B4 Bihari Conedy</span>
+                        </h2>
+                        <p class="lead animate__animated animate__fadeIn animate__delay-1s">
+                            We're a passionate team of Bihari creators dedicated to bringing authentic humor from the heartland of India to the world stage.
+                        </p>
+                        <p class="animate__animated animate__fadeIn animate__delay-2s">
+                            Our content celebrates Bihari culture while making the world laugh! From relatable everyday situations to hilarious takes on current events, we deliver premium comedy that resonates with everyone.
+                        </p>
+                        <div class="mt-4 animate__animated animate__fadeIn animate__delay-3s">
+                            <a href="team.html" class="btn btn-warning px-4 py-2 rounded-pill me-3">
+                                <i class="bi bi-people-fill me-2"></i>Meet Our Team
+                            </a>
+                            <a href="http://www.youtube.com/@B4biharicomedy" class="btn btn-outline-secondary px-4 py-2 rounded-pill">
+                                <i class="bi bi-play-btn-fill me-2"></i>Watch Trailer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 animate__animated animate__fadeInRight">
+                    <div class="ratio ratio-16x9">
+                        <img src="" 
+                             alt="B4 Bihar Team" 
+                             class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating elements -->
+        <div class="position-absolute top-0 end-0 floating" style="z-index: 0; animation-delay: 0.3s;">
+            <img src="https://img.icons8.com/color/96/000000/lol.png" width="96" height="96" alt="laugh emoji">
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-warning position-relative overflow-hidden">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="display-5 fw-bold mb-4 animate__animated animate__fadeInDown">
+                        Ready for More <span class="text-white">Laughs?</span>
+                    </h2>
+                    <p class="lead mb-5 animate__animated animate__fadeIn animate__delay-1s">
+                        Subscribe to our YouTube channel for weekly comedy gold!
+                    </p>
+                    <a href="https://youtube.com/@B4biharicomedy" target="_blank" class="btn btn-dark btn-lg px-5 py-3 rounded-pill animate__animated animate__pulse animate__infinite">
+                        <i class="bi bi-youtube me-2"></i>Subscribe Now
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating emojis -->
+        <div class="position-absolute top-20 start-10 floating" style="animation-delay: 0.2s;">
+            <i class="bi bi-emoji-laughing-fill text-white" style="font-size: 3rem; opacity: 0.7;"></i>
+        </div>
+        <div class="position-absolute bottom-20 end-10 floating" style="animation-delay: 0.4s;">
+            <i class="bi bi-emoji-heart-eyes-fill text-white" style="font-size: 3rem; opacity: 0.7;"></i>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-5">
+        <div class="container pt-5">
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <h3 class="text-white mb-4">
+                        <i class="bi bi-emoji-laughing-fill me-2"></i>B4 Bihar Comedy
+                    </h3>
+                    <p class="text-secondary">
+                        Bringing authentic Bihari humor to the world since 2023. Laugh with us, laugh like us!
+                    </p>
+                    <div class="d-flex mt-4">
+                        <a href="#" class="social-icon text-white me-2">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                        <a href="#" class="social-icon text-white me-2">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="social-icon text-white me-2">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="social-icon text-white">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#" class="text-secondary">Home</a></li>
+                        <li class="mb-2"><a href="#videos" class="text-secondary">Videos</a></li>
+                        <li class="mb-2"><a href="team.html" class="text-secondary">Our Team</a></li>
+                        <li class="mb-2"><a href="#" class="text-secondary">Merchandise</a></li>
+                        <li class="mb-2"><a href="#" class="text-secondary">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Popular Videos</h4>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#" class="text-secondary">Bihari in America</a></li>
+                        <li class="mb-2"><a href="#" class="text-secondary">Tech Support</a></li>
+                        <li class="mb-2"><a href="#" class="text-secondary">Wedding Crashers</a></li>
+                        <li class="mb-2"><a href="#" class="text-secondary">Food Challenge</a></li>
+                        <li class="mb-2"><a href="#" class="text-secondary">Job Interview</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3">
+                    <h4 class="text-white mb-4">Newsletter</h4>
+                    <p class="text-secondary mb-3">
+                        Subscribe for weekly comedy updates and exclusive content!
+                    </p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control bg-dark border-dark text-white" placeholder="Your Email">
+                        <button class="btn btn-warning" type="button">
+                            <i class="bi bi-send-fill"></i>
+                        </button>
+                    </div>
+                    <small class="text-secondary">
+                        We'll never share your email. Unsubscribe anytime.
+                    </small>
+                </div>
+            </div>
+            
+            <hr class="my-5 border-secondary">
+            
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="text-secondary mb-0">
+                        © 2025 B4 Bihar Comedy. All rights reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="text-secondary mb-0">
+                        Made with <i class="bi bi-heart-fill text-danger"></i> in Bihar
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        themeToggle.addEventListener('click', () => {
+            const icon = themeToggle.querySelector('i');
+            
+            if (html.getAttribute('data-bs-theme') === 'dark') {
+                html.setAttribute('data-bs-theme', 'light');
+                icon.classList.remove('bi-moon-fill');
+                icon.classList.add('bi-sun-fill');
+            } else {
+                html.setAttribute('data-bs-theme', 'dark');
+                icon.classList.remove('bi-sun-fill');
+                icon.classList.add('bi-moon-fill');
+            }
+        });
+        
+        // Set initial theme based on preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.setAttribute('data-bs-theme', 'dark');
+            const icon = themeToggle.querySelector('i');
+            icon.classList.remove('bi-sun-fill');
+            icon.classList.add('bi-moon-fill');
+        }
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Open YouTube video
+        function openVideo(videoId) {
+            window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+        }
+        
+        // Initialize animations on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.animate__animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add(entry.target.dataset.animate);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+</body></html>
